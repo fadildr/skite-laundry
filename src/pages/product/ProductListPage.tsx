@@ -10,7 +10,6 @@ export const ProductListPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<any>({});
   const [products, setProducts] = useState([]);
-  const [isLoadingProduct, setIsLoadingProduct] = useState(true);
 
   const getProducts = async () => {
     try {
@@ -20,8 +19,6 @@ export const ProductListPage = () => {
       }
     } catch (error) {
       console.error("Error fetching products:", error);
-    } finally {
-      setIsLoadingProduct(false);
     }
   };
 

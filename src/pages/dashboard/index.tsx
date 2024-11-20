@@ -19,10 +19,8 @@ interface SalesData {
 }
 
 export default function Dashboard() {
-  const { token, user } = useAuth();
+  const { token } = useAuth();
   const [salesData, setSalesData] = useState<SalesData[]>([]);
-  const [isloading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
@@ -42,18 +40,14 @@ export default function Dashboard() {
       );
       setAlertVisible(true);
     } finally {
-      setIsLoading(false);
     }
   };
   const fetchProducts = async () => {
     if (!token) {
-      setIsLoading(false);
       return;
     }
 
     try {
-      setIsLoading(true);
-
       const data = await productsApi.getProducts();
 
       if (Array.isArray(data)) {
@@ -62,18 +56,15 @@ export default function Dashboard() {
         console.error("Invalid products data:", data);
         setProducts([]);
       }
-
-      setError(null);
     } catch (err) {
       console.error("Error fetching products:", err);
       const errorMessage =
         err instanceof Error ? err.message : "Failed to fetch products";
-      setError(errorMessage);
+
       setProducts([]);
       setAlertMessage("Error fetching products: " + errorMessage);
       setAlertVisible(true);
     } finally {
-      setIsLoading(false);
     }
   };
   useEffect(() => {
