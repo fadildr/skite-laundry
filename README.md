@@ -4,13 +4,7 @@ SkiteLaundry is a web application that allows users to manage laundry services e
 
 ## Demo
 
-Visit the demo at: [SkiteLaundry Demo](https://skitelaundry.vercel.app/login)
-
-## Features
-
-- User login
-- Laundry service management
-- Real-time status updates
+Visit the demo at: [SkiteLaundry Demo](https://skitelaundry.vercel.app/)
 
 ## Setup & Usage
 
