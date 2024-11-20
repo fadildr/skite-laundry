@@ -111,7 +111,7 @@ export const ProductForm = ({
         {categories.map((item: any) => (
           <div
             className={`${
-              item.id === formData.category_id
+              item.id === Number(formData.category_id)
                 ? "text-[#CAECFF] bg-[#0099EE]"
                 : "bg-[#CAECFF] text-[#0099EE]"
             } 

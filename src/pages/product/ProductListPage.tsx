@@ -8,7 +8,7 @@ import { productsApi } from "../../lib/api/products";
 import { size } from "lodash";
 export const ProductListPage = () => {
   const [showModal, setShowModal] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<any>({});
   const [products, setProducts] = useState([]);
   const [isLoadingProduct, setIsLoadingProduct] = useState(true);
 
@@ -40,6 +40,7 @@ export const ProductListPage = () => {
   };
 
   const handleClose = () => {
+    getProducts();
     setShowModal(false);
     setSelectedProduct(null);
   };
@@ -48,7 +49,7 @@ export const ProductListPage = () => {
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Products</h1>
-        <Button color="purple" onClick={handleAdd}>
+        <Button color="blue" onClick={handleAdd}>
           Add New Product
         </Button>
       </div>
@@ -58,16 +59,19 @@ export const ProductListPage = () => {
       <Modal
         show={showModal}
         onClose={handleClose}
-        className="bg-slate-300 bg-opacity-50 backdrop-blur-sm"
+        className="bg-slate-300 bg-opacity-50 backdrop-blur-sm h-full  "
       >
         <Modal.Header>
           {selectedProduct ? "Edit Product" : "Add New Product"}
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="bg-[#E7F5FD] ">
           <ProductForm
-            // product={selectedProduct}
+            product={selectedProduct}
             onSubmit={handleClose}
-            onCancel={handleClose}
+            onCancel={() => {
+              setShowModal(false);
+              setSelectedProduct({});
+            }}
           />
         </Modal.Body>
       </Modal>

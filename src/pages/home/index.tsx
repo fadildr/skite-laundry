@@ -44,7 +44,7 @@ export default function Home() {
     <div className="bg-[#E7F5FD] pb-10 relative">
       {user && (
         <Link
-          to="/dashboard"
+          to="/admin"
           className="absolute top-4 right-4  text-white  transition z-50"
         >
           Dashboard

@@ -3,9 +3,11 @@ import Card from "../../components/card/card";
 import Badge from "../../components/badge";
 import { get } from "lodash";
 import { productsApi } from "../../lib/api/products";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Spinner } from "flowbite-react";
 import { category as mapCategory } from "../../constants";
+import { MdArrowBackIosNew } from "react-icons/md";
+
 // Define types for the product and cart item
 type Product = {
   id: number;
@@ -31,6 +33,8 @@ const DetailProduct: React.FC = () => {
   const [product, setProduct] = useState<Product | {}>({});
   const [isLoading, setIsLoading] = useState(true);
   const id = get(useParams(), "id", 0) as number;
+  const navigate = useNavigate(); // Added navigate hook
+
   const name = get(product, "name", "") as string;
   const price = get(product, "price", 0) as number;
   const description = get(product, "description", "") as string;
@@ -72,19 +76,24 @@ const DetailProduct: React.FC = () => {
     setQuantity(0);
     alert("Item added to cart!");
   };
+
   useEffect(() => {
     getProductDetail();
   }, []);
 
   if (isLoading) {
-    return (
-      <div className="bg-[#E7F5FD] min-h-[100vh] flex items-center justify-center">
-        <Spinner aria-label="Extra large spinner example" size="xl" />
-      </div>
-    );
+    return <Spinner aria-label="Extra large spinner example" size="xl" />;
   }
+
   return (
     <div className="bg-[#E7F5FD] min-h-[100vh] pb-20">
+      <div
+        onClick={() => navigate(-1)}
+        className="absolute top-4 left-4 text-[#0099EE] z-20"
+      >
+        <MdArrowBackIosNew size={40} />
+      </div>
+
       <div className="h-[50vh]">
         <Card className={"rounded-b-3xl"} data={product} type="detail" />
       </div>

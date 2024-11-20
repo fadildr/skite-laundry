@@ -9,7 +9,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Alert } from "flowbite-react";
-import { FiUser } from "react-icons/fi";
 import { useAuth } from "../../context/AuthContext";
 import { productsApi } from "../../lib/api/products";
 import { salesApi } from "../../lib/api/sales";
@@ -94,19 +93,6 @@ export default function Dashboard() {
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center mb-6 p-6 bg-white">
-        <h1 className="text-xl font-semibold">Home</h1>
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 bg-gray-100 rounded-full flex items-center justify-center">
-              <span className="text-sm font-medium">
-                <FiUser />
-              </span>
-            </div>
-            <span>{user?.name || "John Doe"}</span>
-          </div>
-        </div>
-      </div>
 
       {/* Product Sold Chart */}
       <div className="bg-white p-6 rounded-lg shadow-sm">
@@ -141,7 +127,7 @@ export default function Dashboard() {
       </div>
 
       {/* Top Selling Products */}
-      <div className="bg-white p-6 rounded-lg shadow-sm w-1/2">
+      <div className="bg-white p-6 rounded-lg shadow-sm lg:w-1/2">
         <div className="flex justify-between items-center mb-6">
           <h2 className="font-medium">Top selling product</h2>
           <select className="bg-transparent border rounded px-2 py-1 text-sm">

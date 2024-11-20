@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { useAuth } from "../../context/AuthContext";
-
+import { useNavigate } from "react-router-dom";
+import { MdArrowBackIosNew } from "react-icons/md";
 // Define types for order items and order summary
 type OrderItem = {
   id: number;
@@ -13,6 +14,7 @@ type OrderItem = {
 
 const OrderSummary: React.FC = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
   const [customerName] = useState<string>(user?.name || "John Doe");
   const [customerAddress] = useState<string>("123 Pasir Ris, 13810, Singapore"); // Simulated customer data
@@ -33,6 +35,12 @@ const OrderSummary: React.FC = () => {
 
   return (
     <div className="flex justify-center items-center h-screen w-full bg-[#E7F5FD]">
+      <div
+        onClick={() => navigate(-1)}
+        className="absolute top-4 left-4 text-[#0099EE] z-20"
+      >
+        <MdArrowBackIosNew size={40} />
+      </div>
       <div className=" max-w-[80%] mx-auto  p-4   flex flex-col justify-center">
         {/* Header */}
         <div className="bg-[#0099EE] text-white text-center py-3 rounded-t-lg">
